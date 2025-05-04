@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Test01.Domain;
-using Test01.Repositories;
 using Test01.ViewModel.Auth;
 
 namespace Test01.Service.impl
@@ -23,7 +22,7 @@ namespace Test01.Service.impl
                 UserName = dto.UserName,
                 Email = dto.Email,
                 FullName = dto.FullName,
-                AvatarUrl = null, // Hoặc dùng default path nếu có
+                AvatarUrl = null,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };

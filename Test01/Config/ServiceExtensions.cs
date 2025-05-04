@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Test01.Domain;
-using Test01.Repositories.Impl;
-using Test01.Repositories;
 using Test01.Data;
-using Test01.Service.impl;
+using Test01.Domain;
+using Test01.Repositories;
+using Test01.Repositories.Impl;
 using Test01.Service;
+using Test01.Service.impl;
 
 namespace Test01.Config
 {
@@ -20,6 +20,7 @@ namespace Test01.Config
         }
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             return services;
         }
