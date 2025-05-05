@@ -8,7 +8,6 @@ namespace Test01.Service.impl
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-
         public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
@@ -22,15 +21,20 @@ namespace Test01.Service.impl
                 UserName = dto.UserName,
                 Email = dto.Email,
                 FullName = dto.FullName,
-                AvatarUrl = null,
+                AvatarUrl = "a",
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
 
             var result = await _userManager.CreateAsync(user, dto.Password);
+            if (!result.Succeeded)
+            {
+                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+                throw new Exception("Lỗi khi đăng ký: " + errors);
+            }
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "User"); // Gán role mặc định
+                await _userManager.AddToRoleAsync(user, "User"); 
             }
 
             return result;

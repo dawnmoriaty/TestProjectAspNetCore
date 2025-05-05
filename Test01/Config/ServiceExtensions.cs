@@ -30,6 +30,11 @@ namespace Test01.Config
             services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
             {
                 // Tùy chỉnh nếu muốn (ví dụ: yêu cầu mật khẩu mạnh)
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 4;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();

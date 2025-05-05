@@ -8,6 +8,7 @@ builder.Services.AddAppDbContext(builder.Configuration);
 builder.Services.AddIdentityConfig();
 builder.Services.AddServices();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,6 +22,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
