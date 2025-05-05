@@ -10,7 +10,8 @@ builder.Services.AddServices();
 
 
 var app = builder.Build();
-
+// seed role vào , không l?i n? ?om ?óm m?t
+await DatabaseSeeder.SeedRolesAsync(app.Services);
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
